@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+app.use(express.json());
 const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -12,6 +13,8 @@ app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
+
+
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
