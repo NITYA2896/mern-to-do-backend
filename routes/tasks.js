@@ -1,21 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const Task = require('../models/Task');
-
-// GET all tasks
-router.get('/', async (req, res) => {
-  try {
-    const tasks = await Task.find();
-    res.json(tasks);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
 // POST a new task
 router.post('/', async (req, res) => {
   const task = new Task({
-    title: req.body.title,
+    text: req.body.text, // <-- change this line
+    done: false
   });
 
   try {
@@ -25,5 +12,3 @@ router.post('/', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
-
-module.exports = router; // <-- Export the router
